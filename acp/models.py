@@ -2,6 +2,11 @@ from django.db import models
 
 
 class Partition(models.Model):
+    """
+    Model representing a partition.
+    """
+
+    # Fields
     name = models.CharField(max_length=100, unique=True)
     avail = models.CharField(max_length=10)
     nodes_count = models.IntegerField()
@@ -10,6 +15,13 @@ class Partition(models.Model):
     small_nodes_list = models.TextField()
     all_nodes_list = models.TextField()
 
+    # Metadata
+    class Meta:
+        ordering = ["name"]
+
+    # Methods
     def __str__(self):
-        """Returns string representation of the model"""
-        return str(self.name) + ':' + str(self.avail)
+        """
+        String for representing the Model object.
+        """
+        return str(self.name) + ': ' + str(self.small_nodes_list)
