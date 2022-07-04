@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../acp/.idea/acp.iml" filepath="$PROJECT_DIR$/../acp/.idea/acp.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/django_acp.iml" filepath="$PROJECT_DIR$/.idea/django_acp.iml" />
       <module fileurl="file://$PROJECT_DIR$/../todolist/.idea/todolist.iml" filepath="$PROJECT_DIR$/../todolist/.idea/todolist.iml" />
     </modules>

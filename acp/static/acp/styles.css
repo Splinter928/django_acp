@@ -1,0 +1,11 @@
+.rectangle{
+width: 5%;
+height: 25px;
+border:1px solid;
+border-radius: 5px;
+margin:2px;
+background: #42f43e;
+text-align: center;
+line-height: 20px;
+display: inline-block;
+}

@@ -7,19 +7,24 @@ import django
 django.setup()
 
 import json
-from acp.models import Partition
+from acp.models import Partition, Job
 
 
 class DbFill:
+
     def __init__(self):
         self.part_list = {}
+        self.jobs_list = {}
 
-    def json_to_db(self):
+    def partitions_to_db(self):
+        """
+        Fill in database with actual partitionlist
+        """
+        # read partition data from JSON, which already parsed
         with open('acp/data/partition_list.json') as pl:
             self.part_list = json.load(pl)
 
         for partition in self.part_list:
-            all_nodes = self.part_list[partition]['ALLNODES']
             try:
                 part_record = Partition.objects.get(name=partition)
                 part_record.name = partition
@@ -41,7 +46,22 @@ class DbFill:
                     all_nodes_list=' '.join(self.part_list[partition]['ALLNODES'])
                 )
 
+    def jobs_to_db(self):
+        """
+        Fill in database with actual jobs
+        """
+        # read jobs data from JSON, which already parsed
+        with open('data/job_list.json') as pl:
+            self.jobs_list = json.load(pl)
+        print(self.jobs_list)
+
+        for job in self.jobs_list:
+            Job.objects.create(**self.jobs_list[job])
+
+
+
 
 if __name__ == '__main__':
+    # part for debugging
     j = DbFill()
-    j.json_to_db()
+    j.jobs_to_db()
