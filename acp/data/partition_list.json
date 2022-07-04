@@ -1,174 +1,194 @@
 {
     "n61": {
-        "AVAIL": "up",
-        "NODELIST": "n61",
-        "ALLNODES": [
-            "61"
-        ],
-        "NODECOUNT": "1",
-        "NODESTATUS": {
-            "ALOCATED": "1",
-            "IDLE": "0"
+        "name": "n61",
+        "avail": "up",
+        "nodes_count": "1",
+        "nodes_status": {
+            "alocated": "0",
+            "idle": "1"
         },
-        "CPUS": {
-            "A": "2",
-            "I": "14",
-            "O": "0",
-            "T": "16"
-        }
-    },
-    "n62": {
-        "AVAIL": "up",
-        "NODELIST": "n62",
-        "ALLNODES": [
-            "62"
-        ],
-        "NODECOUNT": "1",
-        "NODESTATUS": {
-            "ALOCATED": "0",
-            "IDLE": "1"
-        },
-        "CPUS": {
+        "cpus_status": {
             "A": "0",
             "I": "16",
             "O": "0",
             "T": "16"
-        }
+        },
+        "small_nodes_list": "n61",
+        "all_nodes_list": [
+            "61"
+        ]
+    },
+    "n62": {
+        "name": "n62",
+        "avail": "up",
+        "nodes_count": "1",
+        "nodes_status": {
+            "alocated": "0",
+            "idle": "1"
+        },
+        "cpus_status": {
+            "A": "0",
+            "I": "16",
+            "O": "0",
+            "T": "16"
+        },
+        "small_nodes_list": "n62",
+        "all_nodes_list": [
+            "62"
+        ]
     },
     "G00": {
-        "AVAIL": "up",
-        "NODELIST": "n[129-133]",
-        "ALLNODES": [
+        "name": "G00",
+        "avail": "up",
+        "nodes_count": "5",
+        "nodes_status": {
+            "alocated": "5",
+            "idle": "0"
+        },
+        "cpus_status": {
+            "A": "120",
+            "I": "0",
+            "O": "0",
+            "T": "120"
+        },
+        "small_nodes_list": "n[129-133]",
+        "all_nodes_list": [
             "129",
             "130",
             "131",
             "132",
             "133"
-        ],
-        "NODECOUNT": "5",
-        "NODESTATUS": {
-            "ALOCATED": "0",
-            "IDLE": "5"
-        },
-        "CPUS": {
-            "A": "0",
-            "I": "120",
-            "O": "0",
-            "T": "120"
-        }
+        ]
     },
     "G01": {
-        "AVAIL": "up",
-        "NODELIST": "n[134-138]",
-        "ALLNODES": [
+        "name": "G01",
+        "avail": "up",
+        "nodes_count": "5",
+        "nodes_status": {
+            "alocated": "5",
+            "idle": "0"
+        },
+        "cpus_status": {
+            "A": "120",
+            "I": "0",
+            "O": "0",
+            "T": "120"
+        },
+        "small_nodes_list": "n[134-138]",
+        "all_nodes_list": [
             "134",
             "135",
             "136",
             "137",
             "138"
-        ],
-        "NODECOUNT": "5",
-        "NODESTATUS": {
-            "ALOCATED": "0",
-            "IDLE": "5"
-        },
-        "CPUS": {
-            "A": "0",
-            "I": "120",
-            "O": "0",
-            "T": "120"
-        }
+        ]
     },
     "G02": {
-        "AVAIL": "up",
-        "NODELIST": "n[139-143]",
-        "ALLNODES": [
+        "name": "G02",
+        "avail": "up",
+        "nodes_count": "5",
+        "nodes_status": {
+            "alocated": "5",
+            "idle": "0"
+        },
+        "cpus_status": {
+            "A": "120",
+            "I": "0",
+            "O": "0",
+            "T": "120"
+        },
+        "small_nodes_list": "n[139-143]",
+        "all_nodes_list": [
             "139",
             "140",
             "141",
             "142",
             "143"
-        ],
-        "NODECOUNT": "5",
-        "NODESTATUS": {
-            "ALOCATED": "0",
-            "IDLE": "5"
-        },
-        "CPUS": {
-            "A": "0",
-            "I": "120",
-            "O": "0",
-            "T": "120"
-        }
+        ]
     },
     "G03": {
-        "AVAIL": "up",
-        "NODELIST": "n[144-148]",
-        "ALLNODES": [
+        "name": "G03",
+        "avail": "up",
+        "nodes_count": "5",
+        "nodes_status": {
+            "alocated": "5",
+            "idle": "0"
+        },
+        "cpus_status": {
+            "A": "120",
+            "I": "0",
+            "O": "0",
+            "T": "120"
+        },
+        "small_nodes_list": "n[144-148]",
+        "all_nodes_list": [
             "144",
             "145",
             "146",
             "147",
             "148"
-        ],
-        "NODECOUNT": "5",
-        "NODESTATUS": {
-            "ALOCATED": "0",
-            "IDLE": "5"
-        },
-        "CPUS": {
-            "A": "0",
-            "I": "120",
-            "O": "0",
-            "T": "120"
-        }
+        ]
     },
     "G04": {
-        "AVAIL": "up",
-        "NODELIST": "n[125-128]",
-        "ALLNODES": [
+        "name": "G04",
+        "avail": "up",
+        "nodes_count": "4",
+        "nodes_status": {
+            "alocated": "4",
+            "idle": "0"
+        },
+        "cpus_status": {
+            "A": "112",
+            "I": "0",
+            "O": "0",
+            "T": "112"
+        },
+        "small_nodes_list": "n[125-128]",
+        "all_nodes_list": [
             "125",
             "126",
             "127",
             "128"
-        ],
-        "NODECOUNT": "4",
-        "NODESTATUS": {
-            "ALOCATED": "4",
-            "IDLE": "0"
+        ]
+    },
+    "G05": {
+        "name": "G05",
+        "avail": "up",
+        "nodes_count": "4",
+        "nodes_status": {
+            "alocated": "4",
+            "idle": "0"
         },
-        "CPUS": {
+        "cpus_status": {
             "A": "112",
             "I": "0",
             "O": "0",
             "T": "112"
-        }
-    },
-    "G05": {
-        "AVAIL": "up",
-        "NODELIST": "n[121-124]",
-        "ALLNODES": [
+        },
+        "small_nodes_list": "n[121-124]",
+        "all_nodes_list": [
             "121",
             "122",
             "123",
             "124"
-        ],
-        "NODECOUNT": "4",
-        "NODESTATUS": {
-            "ALOCATED": "4",
-            "IDLE": "0"
-        },
-        "CPUS": {
-            "A": "112",
-            "I": "0",
-            "O": "0",
-            "T": "112"
-        }
+        ]
     },
     "G06": {
-        "AVAIL": "up",
-        "NODELIST": "n[113-149]",
-        "ALLNODES": [
+        "name": "G06",
+        "avail": "up",
+        "nodes_count": "37",
+        "nodes_status": {
+            "alocated": "37",
+            "idle": "0"
+        },
+        "cpus_status": {
+            "A": "952",
+            "I": "0",
+            "O": "0",
+            "T": "952"
+        },
+        "small_nodes_list": "n[113-149]",
+        "all_nodes_list": [
             "113",
             "114",
             "115",
@@ -206,23 +226,24 @@
             "147",
             "148",
             "149"
-        ],
-        "NODECOUNT": "37",
-        "NODESTATUS": {
-            "ALOCATED": "8",
-            "IDLE": "29"
-        },
-        "CPUS": {
-            "A": "224",
-            "I": "728",
-            "O": "0",
-            "T": "952"
-        }
+        ]
     },
     "G06_lim": {
-        "AVAIL": "up",
-        "NODELIST": "n[113-149]",
-        "ALLNODES": [
+        "name": "G06_lim",
+        "avail": "up",
+        "nodes_count": "37",
+        "nodes_status": {
+            "alocated": "37",
+            "idle": "0"
+        },
+        "cpus_status": {
+            "A": "952",
+            "I": "0",
+            "O": "0",
+            "T": "952"
+        },
+        "small_nodes_list": "n[113-149]",
+        "all_nodes_list": [
             "113",
             "114",
             "115",
@@ -260,125 +281,120 @@
             "147",
             "148",
             "149"
-        ],
-        "NODECOUNT": "37",
-        "NODESTATUS": {
-            "ALOCATED": "8",
-            "IDLE": "29"
-        },
-        "CPUS": {
-            "A": "224",
-            "I": "728",
-            "O": "0",
-            "T": "952"
-        }
+        ]
     },
     "n144": {
-        "AVAIL": "up",
-        "NODELIST": "n144",
-        "ALLNODES": [
-            "144"
-        ],
-        "NODECOUNT": "1",
-        "NODESTATUS": {
-            "ALOCATED": "0",
-            "IDLE": "1"
+        "name": "n144",
+        "avail": "up",
+        "nodes_count": "1",
+        "nodes_status": {
+            "alocated": "1",
+            "idle": "0"
         },
-        "CPUS": {
-            "A": "0",
-            "I": "24",
+        "cpus_status": {
+            "A": "24",
+            "I": "0",
             "O": "0",
             "T": "24"
-        }
+        },
+        "small_nodes_list": "n144",
+        "all_nodes_list": [
+            "144"
+        ]
     },
     "n145": {
-        "AVAIL": "up",
-        "NODELIST": "n145",
-        "ALLNODES": [
-            "145"
-        ],
-        "NODECOUNT": "1",
-        "NODESTATUS": {
-            "ALOCATED": "0",
-            "IDLE": "1"
+        "name": "n145",
+        "avail": "up",
+        "nodes_count": "1",
+        "nodes_status": {
+            "alocated": "1",
+            "idle": "0"
         },
-        "CPUS": {
-            "A": "0",
-            "I": "24",
+        "cpus_status": {
+            "A": "24",
+            "I": "0",
             "O": "0",
             "T": "24"
-        }
+        },
+        "small_nodes_list": "n145",
+        "all_nodes_list": [
+            "145"
+        ]
     },
     "n146": {
-        "AVAIL": "up",
-        "NODELIST": "n146",
-        "ALLNODES": [
-            "146"
-        ],
-        "NODECOUNT": "1",
-        "NODESTATUS": {
-            "ALOCATED": "0",
-            "IDLE": "1"
+        "name": "n146",
+        "avail": "up",
+        "nodes_count": "1",
+        "nodes_status": {
+            "alocated": "1",
+            "idle": "0"
         },
-        "CPUS": {
-            "A": "0",
-            "I": "24",
+        "cpus_status": {
+            "A": "24",
+            "I": "0",
             "O": "0",
             "T": "24"
-        }
+        },
+        "small_nodes_list": "n146",
+        "all_nodes_list": [
+            "146"
+        ]
     },
     "n147": {
-        "AVAIL": "up",
-        "NODELIST": "n147",
-        "ALLNODES": [
-            "147"
-        ],
-        "NODECOUNT": "1",
-        "NODESTATUS": {
-            "ALOCATED": "0",
-            "IDLE": "1"
+        "name": "n147",
+        "avail": "up",
+        "nodes_count": "1",
+        "nodes_status": {
+            "alocated": "1",
+            "idle": "0"
         },
-        "CPUS": {
-            "A": "0",
-            "I": "24",
+        "cpus_status": {
+            "A": "24",
+            "I": "0",
             "O": "0",
             "T": "24"
-        }
+        },
+        "small_nodes_list": "n147",
+        "all_nodes_list": [
+            "147"
+        ]
     },
     "n148": {
-        "AVAIL": "up",
-        "NODELIST": "n148",
-        "ALLNODES": [
-            "148"
-        ],
-        "NODECOUNT": "1",
-        "NODESTATUS": {
-            "ALOCATED": "0",
-            "IDLE": "1"
+        "name": "n148",
+        "avail": "up",
+        "nodes_count": "1",
+        "nodes_status": {
+            "alocated": "1",
+            "idle": "0"
         },
-        "CPUS": {
-            "A": "0",
-            "I": "24",
+        "cpus_status": {
+            "A": "24",
+            "I": "0",
             "O": "0",
             "T": "24"
-        }
+        },
+        "small_nodes_list": "n148",
+        "all_nodes_list": [
+            "148"
+        ]
     },
     "n149": {
-        "AVAIL": "up",
-        "NODELIST": "n149",
-        "ALLNODES": [
-            "149"
-        ],
-        "NODECOUNT": "1",
-        "NODESTATUS": {
-            "ALOCATED": "0",
-            "IDLE": "1"
+        "name": "n149",
+        "avail": "up",
+        "nodes_count": "1",
+        "nodes_status": {
+            "alocated": "1",
+            "idle": "0"
         },
-        "CPUS": {
-            "A": "0",
-            "I": "24",
+        "cpus_status": {
+            "A": "24",
+            "I": "0",
             "O": "0",
             "T": "24"
-        }
+        },
+        "small_nodes_list": "n149",
+        "all_nodes_list": [
+            "149"
+        ]
     }
 }

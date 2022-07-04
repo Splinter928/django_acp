@@ -1,0 +1,16 @@
+{% extends "acp/base.html" %}
+{% load bootstrap4 %}
+
+{% block page_header %}
+<h3>Jobs</h3>
+{% endblock %}
+
+{% block content %}
+    {% for job in jobs %}
+        <br>{{ job }}
+    {% empty %}
+    <li><h4>No jobs have been added yet.</h4></li>
+{% endfor %}
+
+
+{% endblock %}

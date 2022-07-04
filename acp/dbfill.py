@@ -27,41 +27,37 @@ class DbFill:
         for partition in self.part_list:
             try:
                 part_record = Partition.objects.get(name=partition)
-                part_record.name = partition
-                part_record.avail = self.part_list[partition]['AVAIL']
-                part_record.nodes_count = self.part_list[partition]['NODECOUNT']
-                part_record.nodes_status = self.part_list[partition]['NODESTATUS']
-                part_record.cpus_status = self.part_list[partition]['CPUS']
-                part_record.small_nodes_list = self.part_list[partition]['NODELIST']
-                part_record.all_nodes_list = ' '.join(self.part_list[partition]['ALLNODES'])
+                part_record.name = self.part_list[partition]['name']
+                part_record.avail = self.part_list[partition]['avail']
+                part_record.nodes_count = self.part_list[partition]['nodes_count']
+                part_record.nodes_status = self.part_list[partition]['nodes_status']
+                part_record.cpus_status = self.part_list[partition]['cpus_status']
+                part_record.small_nodes_list = self.part_list[partition]['small_nodes_list']
+                part_record.all_nodes_list = ' '.join(self.part_list[partition]['all_nodes_list'])
                 part_record.save()
             except Partition.DoesNotExist:
-                Partition.objects.create(
-                    name=partition,
-                    avail=self.part_list[partition]['AVAIL'],
-                    nodes_count=self.part_list[partition]['NODECOUNT'],
-                    nodes_status=self.part_list[partition]['NODESTATUS'],
-                    cpus_status=self.part_list[partition]['CPUS'],
-                    small_nodes_list=self.part_list[partition]['NODELIST'],
-                    all_nodes_list=' '.join(self.part_list[partition]['ALLNODES'])
-                )
+                Partition.objects.create(**self.part_list[partition])
 
     def jobs_to_db(self):
         """
         Fill in database with actual jobs
         """
         # read jobs data from JSON, which already parsed
-        with open('data/job_list.json') as pl:
+        with open('acp/data/job_list.json') as pl:
             self.jobs_list = json.load(pl)
-        print(self.jobs_list)
 
+        # clear current jobs
+        jobs = Job.objects.all()
+        for job in jobs:
+            Job.objects.filter(jobid=job.jobid).delete()
+
+        # write new jobs
         for job in self.jobs_list:
             Job.objects.create(**self.jobs_list[job])
-
-
 
 
 if __name__ == '__main__':
     # part for debugging
     j = DbFill()
+    # j.partitions_to_db()
     j.jobs_to_db()

@@ -9,6 +9,8 @@
         shrink-to-fit=no">
     <title>ACP</title>
 
+
+    <link rel="icon" type="image/png" href="{% static 'acp/acp.png' %}">
     <link rel="stylesheet" href="{% static 'acp/styles.css' %}">
 
     {% bootstrap_css %}
@@ -19,7 +21,10 @@
     <nav class="navbar navbar-expand-md navbar-light bg-light mb-4 border">
 
         <a class="navbar-brand" href="{% url 'acp:home'%}">
-            Home</a>
+            <img src="{% static 'acp/acp.png' %}" width="30" height="30" class="d-inline-block align-top"
+            alt="Pavel's Logo">
+            <span>ACP</span>
+        </a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarCollapse" aria-controls="navbarCollapse"
@@ -29,8 +34,8 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'acp:home'%}">
-                  test</a></li>
+              <a class="nav-link" href="{% url 'acp:jobs'%}">
+                  Jobs</a></li>
           </ul>
 
 

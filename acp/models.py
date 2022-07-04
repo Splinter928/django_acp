@@ -38,7 +38,7 @@ class Job(models.Model):
     job_name = models.CharField(max_length=200)
     user = models.CharField(max_length=20)
     job_condition = models.CharField(max_length=5)
-    calc_time = models.TimeField()
+    calc_time = models.CharField(max_length=20)
     num_nodes = models.IntegerField()
     num_cpus = models.IntegerField()
     project = models.CharField(max_length=20)
@@ -46,11 +46,11 @@ class Job(models.Model):
 
     # Metadata
     class Meta:
-        ordering = ["calc_time", "job_name"]
+        ordering = ["jobid"]
 
     # Methods
     def __str__(self):
         """
         String representation for the Model object.
         """
-        return str(self.job_name) + ': ' + str(self.user)
+        return f"[{self.job_condition}] {self.jobid}: {self.job_name} - {self.user}"
