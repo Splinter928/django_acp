@@ -5,52 +5,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1,
-        shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="refresh" content="60">
     <title>ACP</title>
-
 
     <link rel="icon" type="image/png" href="{% static 'acp/acp.png' %}">
     <link rel="stylesheet" href="{% static 'acp/styles.css' %}">
-
     {% bootstrap_css %}
     {% bootstrap_javascript jquery='fullS' %}
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-md navbar-light bg-light mb-4 border">
+<nav class="navbar navbar-expand-md navbar-light bg-light mb-4 border">
 
-        <a class="navbar-brand" href="{% url 'acp:home'%}">
-            <img src="{% static 'acp/acp.png' %}" width="30" height="30" class="d-inline-block align-top"
-            alt="Pavel's Logo">
-            <span>ACP</span>
-        </a>
+    <a class="navbar-brand" href="{% url 'acp:home'%}">
+        <img src="{% static 'acp/acp.png' %}" width="30" height="30" class="d-inline-block align-top"
+             alt="acp's logo">
+        <span>ACP</span>
+    </a>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse"
+    <button class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarCollapse" aria-controls="navbarCollapse"
             aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span></button>
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-          <ul class="navbar-nav mr-auto">
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'acp:jobs'%}">
-                  Jobs</a></li>
-          </ul>
+                <a class="nav-link" href="{% url 'acp:jobs'%}">Jobs</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="location.reload(); return false;">
+                    <img src="{% static 'acp/refresh.png' %}" width="20" height="20" class="d-inline-block align-center"
+                         alt="refresh">
+                    <span>Refresh</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
 
-
-        </div>
-    </nav>
-
-      <main role="main" class="container">
-        <div class="pb-2 mb-2 border-bottom">
-          {% block page_header %}{% endblock page_header %}
-        </div>
-        <div>
-          {% block content %}{% endblock content %}
-        </div>
-      </main>
-
+<main role="main" class="container">
+    <div class="pb-2 mb-2 border-bottom">
+        {% block page_header %}{% endblock page_header %}
+    </div>
+    <div>
+        {% block content %}{% endblock content %}
+    </div>
+</main>
 </body>
-
 </html>
