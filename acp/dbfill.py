@@ -20,14 +20,13 @@ class DbFill:
         """
         Fill in database with actual partitionlist
         """
-        # read partition data from JSON, which already parsed
-        with open('acp/data/partition_list.json') as pl:
+        # read partition parse_data from JSON, which already parsed
+        with open('acp/parse_data/partition_list.json') as pl:
             self.part_list = json.load(pl)
 
         for partition in self.part_list:
             try:
                 part_record = Partition.objects.get(name=partition)
-                part_record.name = self.part_list[partition]['name']
                 part_record.avail = self.part_list[partition]['avail']
                 part_record.nodes_count = self.part_list[partition]['nodes_count']
                 part_record.nodes_status = self.part_list[partition]['nodes_status']
@@ -42,8 +41,8 @@ class DbFill:
         """
         Fill in database with actual jobs
         """
-        # read jobs data from JSON, which already parsed
-        with open('acp/data/job_list.json') as pl:
+        # read jobs parse_data from JSON, which already parsed
+        with open('acp/parse_data/job_list.json') as pl:
             self.jobs_list = json.load(pl)
 
         # clear current jobs

@@ -4,3 +4,4 @@ __pycache__/
 *$py.class
 
 /django_acp/secret_settings.py
+/acp/parse_data/connection_settings.py
