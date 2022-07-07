@@ -1,19 +1,15 @@
-from connection_settings import Settings
-from partitionlist import PartitionList
-from joblist import JobList
+from . import connection_settings, partitionlist, joblist
 
 
 class Parser:
     def __init__(self):
-        self.settings = Settings()
-        self.partlist = PartitionList(self)
-        self.joblist = JobList(self)
+        self.settings = connection_settings.Settings()
+        self.partlist = partitionlist.PartitionList(self)
+        self.joblist = joblist.JobList(self)
 
     def data_parse(self):
         self.partlist.prepare_json_partlist()
-        self.joblist.parse_joblist()
-        self.joblist.formate_joblist()
-        self.joblist.json_jobfilecreation()
+        self.joblist.prepare_json_joblist()
 
 
 if __name__ == '__main__':

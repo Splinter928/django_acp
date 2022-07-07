@@ -62,5 +62,13 @@ class JobList:
         """
         Create JSON file with all partition information
         """
-        with open("job_list.json", "w") as write_file:
+        with open("acp/parse_data/job_list.json", "w") as write_file:
             json.dump(self.formated_joblist, write_file, indent=4)
+
+    def prepare_json_joblist(self):
+        """
+        All actions for creating JSON job list
+        """
+        self.parse_joblist()
+        self.formate_joblist()
+        self.json_jobfilecreation()

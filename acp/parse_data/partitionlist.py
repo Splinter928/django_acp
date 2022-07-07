@@ -29,10 +29,10 @@ class PartitionList:
             self.partlist = stdout.read().decode('UTF-8')
 
             # parse summary information
-            stdin, stdout, stderr = client.exec_command('sinfo -O cpusstate')
+            stdin, stdout, stderr = client.exec_command('sinfo -O cpusstate,nodeaiot')
             self.summary += stdout.read().decode('UTF-8').split()
-            stdin, stdout, stderr = client.exec_command('sinfo -O nodes')
-            self.summary += stdout.read().decode('UTF-8').split()
+            # stdin, stdout, stderr = client.exec_command('sinfo -O nodes')
+            # self.summary += stdout.read().decode('UTF-8').split()
 
     def formate_partlist(self):
         """
@@ -73,27 +73,27 @@ class PartitionList:
         Formate summary to json compatible format
         """
         self.formated_summary = {
-            self.summary[0]: self.summary[1],
-            self.summary[2]: self.summary[3],
+            self.summary[0]: self.summary[2],
+            self.summary[1]: self.summary[3],
         }
 
     def json_plistcreation(self):
         """
         Create JSON file with all partition information
         """
-        with open("partition_list.json", "w") as write_file:
+        with open("acp/parse_data/partition_list.json", "w") as write_file:
             json.dump(self.formated_partlist, write_file, indent=4)
 
     def json_summarycreation(self):
         """
         Create JSON file with summary information
         """
-        with open("summary.json", "w") as write_file:
+        with open("acp/parse_data/summary.json", "w") as write_file:
             json.dump(self.formated_summary, write_file, indent=4)
 
     def prepare_json_partlist(self):
         """
-        All actions for creating JSON partition list
+        All actions for creating JSON partitions and summary lists
         """
         self.parse_partlist()
         self.formate_partlist()

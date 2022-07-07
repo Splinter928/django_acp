@@ -6,9 +6,9 @@ from . import dbfill
 
 def home(request):
     """Home page for acp app"""
-    # refresh_db = dbfill.DbFill()
-    # refresh_db.partitions_to_db()
-    # refresh_db.jobs_to_db()
+    refresh_db = dbfill.DbFill()
+    refresh_db.partitions_to_db()
+    refresh_db.jobs_to_db()
     partitions = Partition.objects.all().order_by('name')
     running_jobs = Job.objects.filter(job_condition='R').order_by('jobid')
 
@@ -28,8 +28,8 @@ def home(request):
 
 def jobs(request):
     """Page with actual job list"""
-    # refresh_db = dbfill.DbFill()
-    # refresh_db.jobs_to_db()
+    refresh_db = dbfill.DbFill()
+    refresh_db.jobs_to_db()
     jobs = Job.objects.all().order_by('jobid')
     context = {'jobs': jobs}
     return render(request, 'acp/jobs.html', context)

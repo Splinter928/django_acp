@@ -7,6 +7,7 @@ import django
 django.setup()
 
 import json
+from .parse_data import parser
 from acp.models import Partition, Job
 
 
@@ -15,15 +16,22 @@ class DbFill:
     def __init__(self):
         self.part_list = {}
         self.jobs_list = {}
+        self.parser = parser.Parser()
+
+    def data_parse(self):
+        # parse current data from SLURM
+        self.parser.data_parse()
 
     def partitions_to_db(self):
         """
         Fill in database with actual partitionlist
         """
+
         # read partition parse_data from JSON, which already parsed
         with open('acp/parse_data/partition_list.json') as pl:
             self.part_list = json.load(pl)
 
+        # put partition data to database
         for partition in self.part_list:
             try:
                 part_record = Partition.objects.get(name=partition)
@@ -41,6 +49,9 @@ class DbFill:
         """
         Fill in database with actual jobs
         """
+        # parse current data from SLURM
+        self.parser.data_parse()
+
         # read jobs parse_data from JSON, which already parsed
         with open('acp/parse_data/job_list.json') as pl:
             self.jobs_list = json.load(pl)
@@ -55,8 +66,7 @@ class DbFill:
             Job.objects.create(**self.jobs_list[job])
 
 
-if __name__ == '__main__':
-    # part for debugging
-    j = DbFill()
-    # j.partitions_to_db()
-    j.jobs_to_db()
+# if __name__ == '__main__':
+#     j = DbFill()
+#     j.partitions_to_db()
+#     j.jobs_to_db()
