@@ -1,59 +1,4 @@
 {
-    "46515": {
-        "jobid": "46515",
-        "partition": "G01",
-        "job_name": "sort_sp_line_9_10.js",
-        "user": "gvt11",
-        "job_condition": "PD",
-        "calc_time": "0:00",
-        "num_nodes": "1",
-        "num_cpus": "1",
-        "project": "andrey"
-    },
-    "46516": {
-        "jobid": "46516",
-        "partition": "G01",
-        "job_name": "sort_sp_line_10_10.js",
-        "user": "gvt11",
-        "job_condition": "PD",
-        "calc_time": "0:00",
-        "num_nodes": "1",
-        "num_cpus": "1",
-        "project": "andrey"
-    },
-    "46517": {
-        "jobid": "46517",
-        "partition": "G01",
-        "job_name": "sort_sp_line_11_10.js",
-        "user": "gvt11",
-        "job_condition": "PD",
-        "calc_time": "0:00",
-        "num_nodes": "1",
-        "num_cpus": "1",
-        "project": "andrey"
-    },
-    "46518": {
-        "jobid": "46518",
-        "partition": "G01",
-        "job_name": "sort_sp_line_16_10.js",
-        "user": "gvt11",
-        "job_condition": "PD",
-        "calc_time": "0:00",
-        "num_nodes": "1",
-        "num_cpus": "1",
-        "project": "andrey"
-    },
-    "46519": {
-        "jobid": "46519",
-        "partition": "G01",
-        "job_name": "sort_sp_line_17_10.js",
-        "user": "gvt11",
-        "job_condition": "PD",
-        "calc_time": "0:00",
-        "num_nodes": "1",
-        "num_cpus": "1",
-        "project": "andrey"
-    },
     "46520": {
         "jobid": "46520",
         "partition": "G01",
@@ -131,64 +76,64 @@
         "num_cpus": "1",
         "project": "andrey"
     },
-    "46510": {
-        "jobid": "46510",
+    "46515": {
+        "jobid": "46515",
         "partition": "G01",
-        "job_name": "sort_sp_line_1_11.js",
+        "job_name": "sort_sp_line_9_10.js",
         "user": "gvt11",
         "job_condition": "R",
-        "calc_time": "9:46",
+        "calc_time": "8:34",
         "num_nodes": "1",
         "num_cpus": "24",
         "project": "andrey",
         "nodes": "n134"
     },
-    "46511": {
-        "jobid": "46511",
+    "46516": {
+        "jobid": "46516",
         "partition": "G01",
-        "job_name": "sort_sp_line_3_10.js",
+        "job_name": "sort_sp_line_10_10.js",
         "user": "gvt11",
         "job_condition": "R",
-        "calc_time": "9:46",
-        "num_nodes": "1",
-        "num_cpus": "24",
-        "project": "andrey",
-        "nodes": "n135"
-    },
-    "46512": {
-        "jobid": "46512",
-        "partition": "G01",
-        "job_name": "sort_sp_line_4_10.js",
-        "user": "gvt11",
-        "job_condition": "R",
-        "calc_time": "9:46",
-        "num_nodes": "1",
-        "num_cpus": "24",
-        "project": "andrey",
-        "nodes": "n136"
-    },
-    "46513": {
-        "jobid": "46513",
-        "partition": "G01",
-        "job_name": "sort_sp_line_6_10.js",
-        "user": "gvt11",
-        "job_condition": "R",
-        "calc_time": "9:46",
+        "calc_time": "7:32",
         "num_nodes": "1",
         "num_cpus": "24",
         "project": "andrey",
         "nodes": "n137"
     },
-    "46514": {
-        "jobid": "46514",
+    "46517": {
+        "jobid": "46517",
         "partition": "G01",
-        "job_name": "sort_sp_line_7_10.js",
+        "job_name": "sort_sp_line_11_10.js",
         "user": "gvt11",
         "job_condition": "R",
-        "calc_time": "9:46",
+        "calc_time": "7:28",
         "num_nodes": "1",
         "num_cpus": "24",
         "project": "andrey",
         "nodes": "n138"
+    },
+    "46518": {
+        "jobid": "46518",
+        "partition": "G01",
+        "job_name": "sort_sp_line_16_10.js",
+        "user": "gvt11",
+        "job_condition": "R",
+        "calc_time": "7:05",
+        "num_nodes": "1",
+        "num_cpus": "24",
+        "project": "andrey",
+        "nodes": "n136"
+    },
+    "46519": {
+        "jobid": "46519",
+        "partition": "G01",
+        "job_name": "sort_sp_line_17_10.js",
+        "user": "gvt11",
+        "job_condition": "R",
+        "calc_time": "6:29",
+        "num_nodes": "1",
+        "num_cpus": "24",
+        "project": "andrey",
+        "nodes": "n135"
     }
 }
