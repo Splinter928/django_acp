@@ -31,8 +31,6 @@ class PartitionList:
             # parse summary information
             stdin, stdout, stderr = client.exec_command('sinfo -O cpusstate,nodeaiot')
             self.summary += stdout.read().decode('UTF-8').split()
-            # stdin, stdout, stderr = client.exec_command('sinfo -O nodes')
-            # self.summary += stdout.read().decode('UTF-8').split()
 
     def formate_partlist(self):
         """
