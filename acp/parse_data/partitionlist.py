@@ -86,7 +86,7 @@ class PartitionList:
         """
         Create JSON file with summary information
         """
-        with open("acp/parse_data/summary.json", "w") as write_file:
+        with open("summary.json", "w") as write_file:
             json.dump(self.formated_summary, write_file, indent=4)
 
     def prepare_json_partlist(self):
@@ -97,4 +97,4 @@ class PartitionList:
         self.formate_partlist()
         self.json_plistcreation()
         self.formate_summary()
-        self.json_summarycreation()
+        # self.json_summarycreation()

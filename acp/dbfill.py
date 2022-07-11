@@ -6,7 +6,7 @@ import django
 
 django.setup()
 
-import json
+import json, time
 from .parse_data import parser
 from acp.models import Partition, Job
 
@@ -66,7 +66,10 @@ class DbFill:
             Job.objects.create(**self.jobs_list[job])
 
 
-# if __name__ == '__main__':
-#     j = DbFill()
-#     j.partitions_to_db()
-#     j.jobs_to_db()
+if __name__ == '__main__':
+    time_start = time.time()
+    j = DbFill()
+    j.partitions_to_db()
+    j.jobs_to_db()
+    time_jobs = time.time()
+    print(time_jobs - time_start)

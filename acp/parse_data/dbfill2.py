@@ -19,15 +19,15 @@ class DbFill:
         self.settings = Settings()
         self.partlist = PartitionList(self)
         self.joblist = JobList(self)
-        self.part_list = {}
-        self.jobs_list = {}
 
     def data_parse(self):
         """
-        Parse and formatting partitions and jobs from SLURM
+        Parsing and formatting partitions, jobs and summary from SLURM
         """
         self.partlist.parse_partlist()
         self.partlist.formate_partlist()
+        self.partlist.formate_summary()
+        self.partlist.json_summarycreation()
         self.joblist.parse_joblist()
         self.joblist.formate_joblist()
 
@@ -52,27 +52,20 @@ class DbFill:
         """
         Clearing old jobs and filling in database with actual jobs
         """
-        jobs = Job.objects.all()
-        for job in jobs:
-            job.delete()
+        Job.objects.all().delete()
 
-        # write new jobs
         for job in self.joblist.formated_joblist:
-            Job.objects.create(**self.oblist.formated_joblist[job])
+            Job.objects.create(**self.joblist.formated_joblist[job])
+
+    def filling_db(self):
+        self.data_parse()
+        self.partitions_to_db()
+        self.jobs_to_db()
 
 
 # debugging part:
-# if __name__ == '__main__':
-#     j = DbFill()
-#     time_start = time.time()
-#     j.data_parse()
-#     time_parse = time.time()
-#     j.partitions_to_db()
-#     time_part = time.time()
-#     j.jobs_to_db()
-#     time_jobs = time.time()
-#
-#     print(time_parse - time_start)
-#     print(time_part - time_parse)
-#     print(time_jobs - time_part)
-#     print(time_jobs - time_start)
+if __name__ == '__main__':
+    j = DbFill()
+    while True:
+        j.filling_db()
+        time.sleep(60)

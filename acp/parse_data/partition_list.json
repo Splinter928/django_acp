@@ -65,12 +65,12 @@
         "avail": "up",
         "nodes_count": "5",
         "nodes_status": {
-            "alocated": "0",
-            "idle": "5"
+            "alocated": "5",
+            "idle": "0"
         },
         "cpus_status": {
-            "A": "0",
-            "I": "120",
+            "A": "120",
+            "I": "0",
             "O": "0",
             "T": "120"
         },
@@ -178,12 +178,12 @@
         "avail": "up",
         "nodes_count": "37",
         "nodes_status": {
-            "alocated": "0",
-            "idle": "37"
+            "alocated": "5",
+            "idle": "32"
         },
         "cpus_status": {
-            "A": "0",
-            "I": "952",
+            "A": "120",
+            "I": "832",
             "O": "0",
             "T": "952"
         },
@@ -233,12 +233,12 @@
         "avail": "up",
         "nodes_count": "37",
         "nodes_status": {
-            "alocated": "0",
-            "idle": "37"
+            "alocated": "5",
+            "idle": "32"
         },
         "cpus_status": {
-            "A": "0",
-            "I": "952",
+            "A": "120",
+            "I": "832",
             "O": "0",
             "T": "952"
         },
