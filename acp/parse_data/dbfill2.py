@@ -67,5 +67,8 @@ class DbFill:
 if __name__ == '__main__':
     j = DbFill()
     while True:
+        time_start = time.time()
         j.filling_db()
+        time_jobs = time.time()
+        print(f'База обновлена за {time_jobs - time_start} секунд')
         time.sleep(60)

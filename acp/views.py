@@ -9,7 +9,6 @@ def home(request):
         partitions = Partition.objects.all().order_by('name')
         running_jobs = Job.objects.filter(job_condition='R').order_by('jobid')
 
-        # defining list of allocated nodes
         allocated_nodes = []
         for job in running_jobs:
             if job.nodes.strip('n').isdigit():
@@ -21,12 +20,17 @@ def home(request):
 
         context = {'partitions': partitions, 'allocated_nodes': allocated_nodes}
         return render(request, 'acp/home.html', context)
+
     except OperationalError:
         return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
 
 
 def jobs(request):
     """Page with actual job list"""
-    jobs = Job.objects.all().order_by('jobid')
-    context = {'jobs': jobs}
-    return render(request, 'acp/jobs.html', context)
+    try:
+        jobs = Job.objects.all().order_by('jobid')
+        context = {'jobs': jobs}
+        return render(request, 'acp/jobs.html', context)
+
+    except OperationalError:
+        return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
