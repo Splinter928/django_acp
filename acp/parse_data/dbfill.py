@@ -7,9 +7,9 @@ import django
 django.setup()
 
 import time
-from joblist import JobList
-from connection_settings import Settings
-from partitionlist import PartitionList
+from .joblist import JobList
+from .connection_settings import Settings
+from .partitionlist import PartitionList
 from acp.models import Partition, Job
 
 
@@ -73,17 +73,17 @@ class DbFill:
         Job.objects.bulk_create([Job(**self.joblist.formated_joblist[job]) for job in self.joblist.formated_joblist])
 
     def filling_db(self):
+        # time1 = time.time()
         self.data_parse()
+        # time2 = time.time()
         self.partitions_to_db()
         self.jobs_to_db()
+        # print(time2-time1)
 
 
 # debugging part:
 if __name__ == '__main__':
     j = DbFill()
     while True:
-        time_start = time.time()
         j.filling_db()
-        time_jobs = time.time()
-        print(f'База обновлена за {time_jobs - time_start} секунд')
         time.sleep(10)

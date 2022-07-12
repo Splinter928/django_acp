@@ -1,10 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db import OperationalError
 from .models import Partition, Job
+from .parse_data.dbfill import DbFill
 
 
 def home(request):
     """Home page for acp app with all nodes status"""
+    db_updater = DbFill()
+    db_updater.filling_db()
+
     try:
         partitions = Partition.objects.all().order_by('name')
         running_jobs = Job.objects.filter(job_condition='R').order_by('jobid')
@@ -27,6 +31,9 @@ def home(request):
 
 def jobs(request):
     """Page with actual job list"""
+    db_updater = DbFill()
+    db_updater.filling_db()
+
     try:
         jobs = Job.objects.all().order_by('jobid')
         context = {'jobs': jobs}
