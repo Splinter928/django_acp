@@ -35,27 +35,42 @@ class DbFill:
         """
         Filling in database with actual partitionlist
         """
-        for partition in self.partlist.formated_partlist:
-            try:
-                part_record = Partition.objects.get(name=partition)
-                part_record.avail = self.partlist.formated_partlist[partition]['avail']
-                part_record.nodes_count = self.partlist.formated_partlist[partition]['nodes_count']
-                part_record.nodes_status = self.partlist.formated_partlist[partition]['nodes_status']
-                part_record.cpus_status = self.partlist.formated_partlist[partition]['cpus_status']
-                part_record.small_nodes_list = self.partlist.formated_partlist[partition]['small_nodes_list']
-                part_record.all_nodes_list = ' '.join(self.partlist.formated_partlist[partition]['all_nodes_list'])
-                part_record.save()
-            except Partition.DoesNotExist:
-                Partition.objects.create(**self.partlist.formated_partlist[partition])
+        bulk_updates, bulk_creates, bulk_deletes = [], [], []
+        partitions = Partition.objects.all()
+        partitions_names = []
+
+        # update existing partitions and create list of deleted partitions
+        for partition in partitions:
+            partitions_names.append(partition.name)
+            if partition.name in self.partlist.formated_partlist:
+                partition.avail = self.partlist.formated_partlist[partition.name]['avail']
+                partition.nodes_count = self.partlist.formated_partlist[partition.name]['nodes_count']
+                partition.nodes_status = self.partlist.formated_partlist[partition.name]['nodes_status']
+                partition.cpus_status = self.partlist.formated_partlist[partition.name]['cpus_status']
+                partition.small_nodes_list = self.partlist.formated_partlist[partition.name]['small_nodes_list']
+                partition.all_nodes_list = self.partlist.formated_partlist[partition.name]['all_nodes_list']
+            else:
+                bulk_deletes.append(partition.name)
+        Partition.objects.bulk_update(partitions, ['avail', 'nodes_count', 'cpus_status',
+                                                   'small_nodes_list', 'all_nodes_list'])
+
+        # create list of new partitions in DB from parsed data
+        for parsed_partition in self.partlist.formated_partlist:
+            if parsed_partition not in partitions_names:
+                bulk_creates.append(Partition(**self.partlist.formated_partlist[parsed_partition]))
+
+        # create\delete partitions in DB, if it is necessary
+        if bulk_creates:
+            Partition.objects.bulk_create(bulk_creates)
+        if bulk_deletes:
+            Partition.objects.filter(name__in=bulk_deletes).delete()
 
     def jobs_to_db(self):
         """
         Clearing old jobs and filling in database with actual jobs
         """
         Job.objects.all().delete()
-
-        for job in self.joblist.formated_joblist:
-            Job.objects.create(**self.joblist.formated_joblist[job])
+        Job.objects.bulk_create([Job(**self.joblist.formated_joblist[job]) for job in self.joblist.formated_joblist])
 
     def filling_db(self):
         self.data_parse()
@@ -71,4 +86,4 @@ if __name__ == '__main__':
         j.filling_db()
         time_jobs = time.time()
         print(f'База обновлена за {time_jobs - time_start} секунд')
-        time.sleep(60)
+        time.sleep(10)

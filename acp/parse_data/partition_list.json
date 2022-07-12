@@ -1,23 +1,4 @@
 {
-    "n61": {
-        "name": "n61",
-        "avail": "up",
-        "nodes_count": "1",
-        "nodes_status": {
-            "alocated": "0",
-            "idle": "1"
-        },
-        "cpus_status": {
-            "A": "0",
-            "I": "16",
-            "O": "0",
-            "T": "16"
-        },
-        "small_nodes_list": "n61",
-        "all_nodes_list": [
-            "61"
-        ]
-    },
     "n62": {
         "name": "n62",
         "avail": "up",

@@ -63,7 +63,7 @@ class PartitionList:
                         'T': plist[5].split('/')[3],
                     },
                     'small_nodes_list': plist[2],
-                    'all_nodes_list': pnodes,
+                    'all_nodes_list': ' '.join(pnodes),
                 }
 
     def formate_summary(self):
