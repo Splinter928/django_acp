@@ -9,7 +9,7 @@
 <ul>
     {% for partition in partitions %}
     <li>
-        {{ partition }} <br>
+        <b>{{ partition.name }}</b> | CPUS (a/i/t): {{ partition.cpus_status }} <br>
         {% for node in partition.all_nodes_list.split %}
             {% if node in allocated_nodes %}
                 <div class='rectangle' style="background: #f3b32b;">

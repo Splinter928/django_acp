@@ -29,6 +29,8 @@ DEBUG = secret_settings.DEBUG
 ALLOWED_HOSTS = [
     '192.168.1.226',
     'localhost',
+    'acp.mimgo',
+    'www.acp.mimgo',
 ]
 
 # Application definition

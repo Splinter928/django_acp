@@ -56,12 +56,7 @@ class PartitionList:
                         'alocated': plist[4].split('/')[0],
                         'idle': plist[4].split('/')[1]
                     },
-                    'cpus_status': {
-                        'A': plist[5].split('/')[0],
-                        'I': plist[5].split('/')[1],
-                        'O': plist[5].split('/')[2],
-                        'T': plist[5].split('/')[3],
-                    },
+                    'cpus_status': '/'.join([plist[5].split('/')[0], plist[5].split('/')[1], plist[5].split('/')[3]]),
                     'small_nodes_list': plist[2],
                     'all_nodes_list': ' '.join(pnodes),
                 }

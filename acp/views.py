@@ -11,7 +11,7 @@ def home(request):
 
     try:
         partitions = Partition.objects.all().order_by('name')
-        running_jobs = Job.objects.filter(job_condition='R').order_by('jobid')
+        running_jobs = Job.objects.filter(job_condition='R')
 
         allocated_nodes = []
         for job in running_jobs:
@@ -22,7 +22,14 @@ def home(request):
                 node_fin = int(job.nodes.strip('n[]').split('-')[1])
                 allocated_nodes += [str(num) for num in range(node_start, node_fin + 1)]
 
-        context = {'partitions': partitions, 'allocated_nodes': allocated_nodes}
+        all_nodes_status = db_updater.partlist.formated_summary["NODES(A/I/O/T)"].split('/')
+        all_cpus_status = db_updater.partlist.formated_summary["CPUS(A/I/O/T)"].split('/')
+        context = {
+            'partitions': partitions,
+            'allocated_nodes': allocated_nodes,
+            'nodes': all_nodes_status,
+            'cpus': all_cpus_status,
+        }
         return render(request, 'acp/home.html', context)
 
     except OperationalError:
@@ -36,8 +43,13 @@ def jobs(request):
 
     try:
         jobs = Job.objects.all().order_by('jobid')
-        context = {'jobs': jobs}
+        all_nodes_status = db_updater.partlist.formated_summary["NODES(A/I/O/T)"].split('/')
+        all_cpus_status = db_updater.partlist.formated_summary["CPUS(A/I/O/T)"].split('/')
+        context = {
+            'jobs': jobs,
+            'nodes': all_nodes_status,
+            'cpus': all_cpus_status,
+        }
         return render(request, 'acp/jobs.html', context)
-
     except OperationalError:
         return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
