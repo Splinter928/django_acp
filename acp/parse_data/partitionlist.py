@@ -4,11 +4,11 @@ import json
 
 class PartitionList:
     """
-    Partition and node list creation
+    Parsing partition list and summary information
     """
 
-    def __init__(self, parser):
-        self.settings = parser.settings
+    def __init__(self, acp):
+        self.settings = acp.settings
         self.partlist = ''
         self.formated_partlist = dict()
         self.summary = []
@@ -34,19 +34,19 @@ class PartitionList:
 
     def formate_partlist(self):
         """
-        Formate partition list to json compatible format
+        Formatting partition list to json compatible format
         """
-        headers = self.partlist.split('\n')[0].split()  # headers of partition table
         for partition in self.partlist.split('\n')[1:]:
             plist = partition.split()  # list of current partition attributes
-
-            if len(plist) > 0:
-                if plist[2].strip('n').isdigit():
-                    pnodes = [plist[2].strip('n')]
-                else:
-                    node_start = int(plist[2].strip('n[]').split('-')[0])
-                    node_fin = int(plist[2].strip('n[]').split('-')[1])
-                    pnodes = [str(num) for num in range(node_start, node_fin + 1)]
+            pnodes = []  # all nodes list for current partition
+            if plist:
+                for plist_part in plist[2].split(','):
+                    if plist_part.strip('n').isdigit():
+                        pnodes += [plist_part.strip('n')]
+                    else:
+                        node_start = int(plist_part.strip('n[]').split('-')[0])
+                        node_fin = int(plist_part.strip('n[]').split('-')[1])
+                        pnodes += [str(num) for num in range(node_start, node_fin + 1)]
 
                 self.formated_partlist[plist[0]] = {
                     'name': plist[0],
@@ -86,7 +86,7 @@ class PartitionList:
 
     def prepare_json_partlist(self):
         """
-        All actions for creating JSON partitions and summary lists
+        All actions for parsing partitions and summary lists
         """
         self.parse_partlist()
         self.formate_partlist()

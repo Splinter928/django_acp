@@ -38,12 +38,15 @@
             </li>
         </ul>
         <ul class="navbar-nav mx-auto">
+            <div>
             <li class="nav-item">
-                NODES (alloc/idle/total): <font color="red">{{ nodes.0 }}</font>/<font color="#42f43e">{{ nodes.1 }}</font>/{{ nodes.3 }}-
+                NODES (alloc/idle/total): <font color="red">{{ nodes.0 }}</font>/<font color="#42f43e">{{ nodes.1 }}</font>/{{ nodes.3 }}
             </li>
+            <p>
             <li class="nav-item">
                 CPUS (alloc/idle/total): <font color="red">{{ cpus.0 }}</font>/<font color="#42f43e">{{ cpus.1 }}</font>/{{ cpus.3 }}
             </li>
+            </div>
         </ul>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
@@ -61,7 +64,7 @@
     <div class="pb-2 mb-2 border-bottom">
         {% block page_header %}{% endblock page_header %}
     </div>
-    <div style="width: 100%">
+    <div>
         {% block content %}{% endblock content %}
     </div>
 </main>

@@ -7,9 +7,10 @@ import django
 django.setup()
 
 import time
-from .joblist import JobList
-from .connection_settings import Settings
 from .partitionlist import PartitionList
+from .joblist import JobList
+from .nodeslist import NodeList
+from .connection_settings import Settings
 from acp.models import Partition, Job
 
 
@@ -19,6 +20,7 @@ class DbFill:
         self.settings = Settings()
         self.partlist = PartitionList(self)
         self.joblist = JobList(self)
+        self.nodelist = NodeList(self)
 
     def data_parse(self):
         """
@@ -30,6 +32,8 @@ class DbFill:
         self.partlist.json_summarycreation()
         self.joblist.parse_joblist()
         self.joblist.formate_joblist()
+        # self.nodelist.parse_nodelist()
+        # self.nodelist.formate_nodelist()
 
     def partitions_to_db(self):
         """
@@ -84,6 +88,5 @@ class DbFill:
 # debugging part:
 if __name__ == '__main__':
     j = DbFill()
-    while True:
-        j.filling_db()
-        time.sleep(10)
+    j.data_parse()
+    print(j.nodelist.formated_nodelist)

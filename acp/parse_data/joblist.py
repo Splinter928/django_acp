@@ -4,7 +4,7 @@ import json
 
 class JobList:
     """
-    Partition and node list creation
+    Jobs list creation
     """
 
     def __init__(self, acp):
@@ -14,7 +14,7 @@ class JobList:
 
     def parse_joblist(self):
         """
-        Parse partition list in string format from SLURM
+        Parse jobs list in string format from SLURM
         """
         with paramiko.SSHClient() as client:
             # add server key to list of known hosts and connect to it
@@ -22,13 +22,14 @@ class JobList:
             client.connect(hostname=self.settings.HOST, username=self.settings.USER,
                            password=self.settings.PASSWORD, port=self.settings.PORT)
 
-            # parse partition information
+            # parse jobs information
             stdin, stdout, stderr = client.exec_command(
                 'squeue --format="%.18i %.10P %.45j %.8u %.5t %.10M %.6D %.5C %.20k %.5N"')
             self.joblist = stdout.read().decode('UTF-8')
+
     def formate_joblist(self):
         """
-        Formate partition list to json compatible format
+        Formatting job list to json compatible format
         """
         headers = [
             'jobid',
@@ -56,11 +57,11 @@ class JobList:
                 if jnodes:
                     self.formated_joblist[jlist[0]] = {headers[i]: jlist[i] for i in range(len(headers))}
                 else:
-                    self.formated_joblist[jlist[0]] = {headers[i]: jlist[i] for i in range(len(headers) -1)}
+                    self.formated_joblist[jlist[0]] = {headers[i]: jlist[i] for i in range(len(headers) - 1)}
 
     def json_jobfilecreation(self):
         """
-        Create JSON file with all partition information
+        Create JSON file with all jobs information
         """
         with open("acp/parse_data/job_list.json", "w") as write_file:
             json.dump(self.formated_joblist, write_file, indent=4)

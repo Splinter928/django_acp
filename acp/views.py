@@ -42,7 +42,7 @@ def jobs(request):
     db_updater.filling_db()
 
     try:
-        jobs = Job.objects.all().order_by('jobid')
+        jobs = Job.objects.all().order_by('-job_condition', 'jobid')
         all_nodes_status = db_updater.partlist.formated_summary["NODES(A/I/O/T)"].split('/')
         all_cpus_status = db_updater.partlist.formated_summary["CPUS(A/I/O/T)"].split('/')
         context = {
