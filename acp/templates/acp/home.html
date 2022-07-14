@@ -8,7 +8,6 @@
 {% block content %}
 <ul>
     {% for partition in partitions %}
-    <li>
         <b>{{ partition.name }}</b> | CPUS (a/i/t): {{ partition.cpus_status }} <br>
         {% for node in partition.all_nodes_list.split %}
             {% if node in allocated_nodes %}
@@ -21,7 +20,7 @@
                 </div>
             {% endif %}
         {% endfor %}
-    </li>
+    <br>
     {% empty %}
     <li><h4>No partitions have been added yet.</h4></li>
     {% endfor %}

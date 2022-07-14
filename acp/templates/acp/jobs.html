@@ -3,13 +3,12 @@
 
 {% block page_header %}
 <h3>Jobs</h3>
-Currently {{ jobs.count }} tasks have been launched.
+Currently {{ jobs.count }} jobs have been launched.
 {% endblock %}
 
 {% block content %}
     {% for job in jobs %}
         <li>
-
         {% if job.job_condition == 'R' %}
             <font color="#42f43e">RUNNING</font> - {{ job.calc_time }}
         {% else %}
