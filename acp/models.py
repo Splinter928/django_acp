@@ -46,7 +46,7 @@ class Job(models.Model):
 
     # Metadata
     class Meta:
-        ordering = ["jobid"]
+        ordering = ["-job_condition","jobid"]
 
     # Methods
     def __str__(self):

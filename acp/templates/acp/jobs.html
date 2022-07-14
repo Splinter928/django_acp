@@ -3,11 +3,29 @@
 
 {% block page_header %}
 <h3>Jobs</h3>
+Currently {{ jobs.count }} tasks have been launched.
 {% endblock %}
 
 {% block content %}
     {% for job in jobs %}
-        <br>{{ job }}
+        <li>
+
+        {% if job.job_condition == 'R' %}
+            <font color="#42f43e">RUNNING</font> - {{ job.calc_time }}
+        {% else %}
+            <font color="orange">PENDING</font>
+        {% endif %}
+
+          - {{ job.job_name }} - <b>{{ job.partition }}</b> -
+
+        {% if job.job_condition == 'R' %}
+            N: {{ job.num_nodes }} - CPU: {{ job.num_cpus }} -
+        {% else %}
+            N: 0 - CPU: 0 -
+        {% endif %}
+        <b>{{ job.user }}</b> - {{ job.project }}
+        </li>
+
     {% empty %}
     <li><h4>No jobs have been added yet.</h4></li>
 {% endfor %}
