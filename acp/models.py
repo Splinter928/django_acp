@@ -46,7 +46,7 @@ class Job(models.Model):
 
     # Metadata
     class Meta:
-        ordering = ["-job_condition","jobid"]
+        ordering = ["-job_condition", "jobid"]
 
     # Methods
     def __str__(self):
@@ -54,3 +54,29 @@ class Job(models.Model):
         String representation for the Model object.
         """
         return f"[{self.job_condition}] {self.jobid}: {self.job_name} - {self.user}"
+
+
+class Node(models.Model):
+    """
+    Model representing a node.
+    """
+
+    # Fields
+    node = models.CharField(max_length=20, unique=True)
+    partition = models.CharField(max_length=100)
+    status = models.CharField(max_length=20)
+    cpus = models.IntegerField()
+    cpus_status = models.CharField(max_length=100)
+    memory = models.IntegerField()
+    tmp = models.IntegerField()
+
+    # Metadata
+    class Meta:
+        ordering = ["node"]
+
+    # Methods
+    def __str__(self):
+        """
+        String representation for the Model object.
+        """
+        return str(self.node) + ': ' + str(self.status)

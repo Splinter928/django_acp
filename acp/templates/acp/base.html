@@ -36,9 +36,13 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'acp:jobs'%}">Jobs</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'acp:nodes'%}">Nodes</a>
+            </li>
         </ul>
         <ul class="navbar-nav mx-auto">
             <div>
+            {%  if nodes and cpus %}
             <li class="nav-item">
                 NODES (alloc/idle/total): <font color="red">{{ nodes.0 }}</font>/<font color="#42f43e">{{ nodes.1 }}</font>/{{ nodes.3 }}
             </li>
@@ -46,6 +50,7 @@
             <li class="nav-item">
                 CPUS (alloc/idle/total): <font color="red">{{ cpus.0 }}</font>/<font color="#42f43e">{{ cpus.1 }}</font>/{{ cpus.3 }}
             </li>
+            {% endif %}
             </div>
         </ul>
         <ul class="navbar-nav ml-auto">

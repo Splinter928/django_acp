@@ -1,0 +1,26 @@
+{% extends "acp/base.html" %}
+{% load bootstrap4 %}
+
+{% block page_header %}
+<h3>Nodes</h3>
+{% endblock %}
+
+
+{% block content %}
+    {% for node in nodelist %}
+        <li>
+            {{ node.node }} -
+
+            {% if node.status == 'idle' %}
+                <font color="#42f43e">{{node.status}}</font>
+            {% elif node.status == 'mixed' %}
+                <font color="yellow">{{node.status}}</font>
+            {% else %}
+                <font color="orange">{{node.status}}</font>
+            {% endif %}
+             - CPUS (A/I/O/T): {{ node.cpus_status }} - {{ node.memory}} - {{ node.tmp }}
+
+        </li>
+    {% endfor %}
+
+{% endblock %}

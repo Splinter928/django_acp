@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db import OperationalError
-from .models import Partition, Job
+from .models import Partition, Job, Node
 from .parse_data.dbfill import DbFill
 
 
@@ -43,13 +43,20 @@ def jobs(request):
 
     try:
         jobs = Job.objects.all().order_by('-job_condition', 'jobid')
-        all_nodes_status = db_updater.partlist.formated_summary["NODES(A/I/O/T)"].split('/')
-        all_cpus_status = db_updater.partlist.formated_summary["CPUS(A/I/O/T)"].split('/')
-        context = {
-            'jobs': jobs,
-            'nodes': all_nodes_status,
-            'cpus': all_cpus_status,
-        }
+        context = {'jobs': jobs}
         return render(request, 'acp/jobs.html', context)
+    except OperationalError:
+        return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
+
+
+def nodes(request):
+    """Page with actual nodes information"""
+    db_updater = DbFill()
+    db_updater.filling_db()
+
+    try:
+        nodes = Node.objects.all()
+        context = {'nodelist': nodes}
+        return render(request, 'acp/nodes.html', context)
     except OperationalError:
         return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))

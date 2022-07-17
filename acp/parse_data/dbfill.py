@@ -11,7 +11,7 @@ from .partitionlist import PartitionList
 from .joblist import JobList
 from .nodeslist import NodeList
 from .connection_settings import Settings
-from acp.models import Partition, Job
+from acp.models import Partition, Job, Node
 
 
 class DbFill:
@@ -29,11 +29,13 @@ class DbFill:
         self.partlist.parse_partlist()
         self.partlist.formate_partlist()
         self.partlist.formate_summary()
-        self.partlist.json_summarycreation()
+        # self.partlist.json_summarycreation()
+
         self.joblist.parse_joblist()
         self.joblist.formate_joblist()
-        # self.nodelist.parse_nodelist()
-        # self.nodelist.formate_nodelist()
+
+        self.nodelist.parse_nodelist()
+        self.nodelist.formate_nodelist()
 
     def partitions_to_db(self):
         """
@@ -58,7 +60,7 @@ class DbFill:
         Partition.objects.bulk_update(partitions, ['avail', 'nodes_count', 'cpus_status',
                                                    'small_nodes_list', 'all_nodes_list'])
 
-        # create list of new partitions in DB from parsed data
+        # create list of new partitions from parsed data
         for parsed_partition in self.partlist.formated_partlist:
             if parsed_partition not in partitions_names:
                 bulk_creates.append(Partition(**self.partlist.formated_partlist[parsed_partition]))
@@ -69,6 +71,36 @@ class DbFill:
         if bulk_deletes:
             Partition.objects.filter(name__in=bulk_deletes).delete()
 
+    def nodes_to_db(self):
+        """
+        Updating nodes in database and clearing non-actual nodes
+        """
+        bulk_updates, bulk_creates, bulk_deletes = [], [], []
+        nodes = Node.objects.all()
+        nodes_names = []
+
+        # update existing partitions and create list of deleted partitions
+        for node in nodes:
+            nodes_names.append(node.node)
+            if node.node in self.nodelist.formated_nodelist:
+                node.partition = self.nodelist.formated_nodelist[node.node]['partition']
+                node.status = self.nodelist.formated_nodelist[node.node]['status']
+                node.cpus_status = self.nodelist.formated_nodelist[node.node]['cpus_status']
+            else:
+                bulk_deletes.append(node.node)
+            Node.objects.bulk_update(nodes, ['partition', 'status', 'cpus_status'])
+
+        # create list of new nodes from parsed data
+        for parsed_node in self.nodelist.formated_nodelist:
+            if parsed_node not in nodes_names:
+                bulk_creates.append(Node(**self.nodelist.formated_nodelist[parsed_node]))
+
+        # create\delete nodes in DB, if it is necessary
+        if bulk_creates:
+            Node.objects.bulk_create(bulk_creates)
+        if bulk_deletes:
+            Node.objects.filter(name__in=bulk_deletes).delete()
+
     def jobs_to_db(self):
         """
         Clearing old jobs and filling in database with actual jobs
@@ -77,16 +109,14 @@ class DbFill:
         Job.objects.bulk_create([Job(**self.joblist.formated_joblist[job]) for job in self.joblist.formated_joblist])
 
     def filling_db(self):
-        # time1 = time.time()
         self.data_parse()
-        # time2 = time.time()
         self.partitions_to_db()
         self.jobs_to_db()
-        # print(time2-time1)
-
+        self.nodes_to_db()
 
 # debugging part:
 if __name__ == '__main__':
     j = DbFill()
     j.data_parse()
+    j.nodes_to_db()
     print(j.nodelist.formated_nodelist)
