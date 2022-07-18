@@ -21,6 +21,9 @@
              - CPUS (A/I/O/T): {{ node.cpus_status }} - {{ node.memory}} - {{ node.tmp }}
 
         </li>
+
+    {% empty %}
+    <h4>No nodes have been added yet.</h4>
     {% endfor %}
 
 {% endblock %}

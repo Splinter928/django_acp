@@ -1,5 +1,5 @@
 import paramiko
-import json
+import time
 
 
 class NodeList:
@@ -27,6 +27,7 @@ class NodeList:
                 'sinfo --format="%.15N %.20P %.13T %.4c %.15C %.10m %.10d" --Node')
             self.nodelist = stdout.read().decode('UTF-8')
 
+
     def formate_nodelist(self):
         """
         Formatting nodes list to json compatible format
@@ -49,3 +50,4 @@ class NodeList:
                 else:
                     self.formated_nodelist[node[0]]['partition'] = self.formated_nodelist[node[0]]['partition'] \
                                                                    + ' ' + node[1].strip('*')
+

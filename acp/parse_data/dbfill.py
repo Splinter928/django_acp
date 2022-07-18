@@ -7,10 +7,10 @@ import django
 django.setup()
 
 import time
-from .partitionlist import PartitionList
-from .joblist import JobList
-from .nodeslist import NodeList
-from .connection_settings import Settings
+from acp.parse_data.partitionlist import PartitionList
+from acp.parse_data.joblist import JobList
+from acp.parse_data.nodeslist import NodeList
+from acp.parse_data.connection_settings import Settings
 from acp.models import Partition, Job, Node
 
 
@@ -88,7 +88,7 @@ class DbFill:
                 node.cpus_status = self.nodelist.formated_nodelist[node.node]['cpus_status']
             else:
                 bulk_deletes.append(node.node)
-            Node.objects.bulk_update(nodes, ['partition', 'status', 'cpus_status'])
+        Node.objects.bulk_update(nodes, ['partition', 'status', 'cpus_status'])
 
         # create list of new nodes from parsed data
         for parsed_node in self.nodelist.formated_nodelist:
@@ -114,9 +114,8 @@ class DbFill:
         self.jobs_to_db()
         self.nodes_to_db()
 
+
 # debugging part:
 if __name__ == '__main__':
     j = DbFill()
-    j.data_parse()
-    j.nodes_to_db()
-    print(j.nodelist.formated_nodelist)
+    j.filling_db()
