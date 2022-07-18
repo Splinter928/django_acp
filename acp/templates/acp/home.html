@@ -9,12 +9,16 @@
 <ul>
     {% for partition in partitions %}
         <b>{{ partition.name }}</b> | CPUS (a/i/t): {{ partition.cpus_status }} <br>
-        {% for node in partition.all_nodes_list.split %}
-            {% if node in allocated_nodes %}
+        {% for node, status in cur_nodes.items %}
+            {% if node in partition.all_nodes_list.split and status == 'allocated' %}
                 <div class='rectangle' style="background: #f3b32b;">
                     {{ node }}
                 </div>
-            {% else %}
+            {% elif node in partition.all_nodes_list.split and status == 'mixed' %}
+                <div class='rectangle' style="background: #f1fe1b;">
+                    {{ node }}
+                </div>
+            {% elif node in partition.all_nodes_list.split and status == 'idle' %}
                 <div class='rectangle' style="background: #42f43e;">
                     {{ node }}
                 </div>

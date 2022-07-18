@@ -12,6 +12,7 @@ def home(request):
     try:
         partitions = Partition.objects.all().order_by('name')
         running_jobs = Job.objects.filter(job_condition='R')
+        current_nodes = Node.objects.all()
 
         allocated_nodes = []
         for job in running_jobs:
@@ -22,11 +23,16 @@ def home(request):
                 node_fin = int(job.nodes.strip('n[]').split('-')[1])
                 allocated_nodes += [str(num) for num in range(node_start, node_fin + 1)]
 
+        nodes_status = {}
+        for cnode in current_nodes:
+            nodes_status[cnode.node.strip('n')] = cnode.status
+
         all_nodes_status = db_updater.partlist.formated_summary["NODES(A/I/O/T)"].split('/')
         all_cpus_status = db_updater.partlist.formated_summary["CPUS(A/I/O/T)"].split('/')
         context = {
             'partitions': partitions,
             'allocated_nodes': allocated_nodes,
+            'cur_nodes': nodes_status,
             'nodes': all_nodes_status,
             'cpus': all_cpus_status,
         }
