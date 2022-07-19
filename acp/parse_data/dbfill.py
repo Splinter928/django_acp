@@ -45,7 +45,7 @@ class DbFill:
         partitions = Partition.objects.all()
         partitions_names = []
 
-        # update existing partitions and create list of deleted partitions
+        # update existing partitions and create list of partitions to deleting
         for partition in partitions:
             partitions_names.append(partition.name)
             if partition.name in self.partlist.formated_partlist:
@@ -79,7 +79,7 @@ class DbFill:
         nodes = Node.objects.all()
         nodes_names = []
 
-        # update existing partitions and create list of deleted partitions
+        # update existing partitions and create list of nodes to deleting
         for node in nodes:
             nodes_names.append(node.node)
             if node.node in self.nodelist.formated_nodelist:
@@ -99,14 +99,36 @@ class DbFill:
         if bulk_creates:
             Node.objects.bulk_create(bulk_creates)
         if bulk_deletes:
-            Node.objects.filter(name__in=bulk_deletes).delete()
+            Node.objects.filter(node__in=bulk_deletes).delete()
 
     def jobs_to_db(self):
         """
         Clearing old jobs and filling in database with actual jobs
         """
-        Job.objects.all().delete()
-        Job.objects.bulk_create([Job(**self.joblist.formated_joblist[job]) for job in self.joblist.formated_joblist])
+        bulk_updates, bulk_creates, bulk_deletes = [], [], []
+        jobs = Job.objects.all()
+        jobs_ids = []
+
+        # update existing jobs and create list of jobs to deleting
+        for job in jobs:
+            jobs_ids.append(job.jobid)
+            if job.jobid in self.joblist.formated_joblist:
+                job.job_condition = self.joblist.formated_joblist[job.jobid]['job_condition']
+                job.calc_time = self.joblist.formated_joblist[job.jobid]['calc_time']
+            else:
+                bulk_deletes.append(job.jobid)
+        Job.objects.bulk_update(jobs, ['job_condition', 'calc_time'])
+
+        # create list of new jobs from parsed data
+        for parsed_job in self.joblist.formated_joblist:
+            if parsed_job not in jobs_ids:
+                bulk_creates.append(Job(**self.joblist.formated_joblist[parsed_job]))
+
+        # create\delete jobes in DB, if it is necessary
+        if bulk_creates:
+            Job.objects.bulk_create(bulk_creates)
+        if bulk_deletes:
+            Job.objects.filter(jobid__in=bulk_deletes).delete()
 
     def filling_db(self):
         self.data_parse()

@@ -38,8 +38,8 @@ def jobs(request):
     db_updater.filling_db()
 
     try:
-        jobs = Job.objects.all().order_by('-job_condition', 'jobid')
-        context = {'jobs': jobs}
+        cur_jobs = Job.objects.all().order_by('-job_condition', 'jobid')
+        context = {'jobs': cur_jobs}
         return render(request, 'acp/jobs.html', context)
     except OperationalError:
         return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
@@ -51,8 +51,8 @@ def nodes(request):
     db_updater.filling_db()
 
     try:
-        nodes = Node.objects.all()
-        context = {'nodelist': nodes}
+        cur_nodes = Node.objects.all()
+        context = {'nodelist': cur_nodes}
         return render(request, 'acp/nodes.html', context)
     except OperationalError:
         return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))

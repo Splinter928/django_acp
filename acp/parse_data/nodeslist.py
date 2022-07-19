@@ -40,9 +40,9 @@ class NodeList:
                     self.formated_nodelist[node[0]] = {
                         'node': node[0],
                         'partition': node[1].strip('*'),
-                        'status': node[2],
+                        'status': node[2].strip('*'),
                         'cpus': node[3],
-                        'cpus_status': node[4],
+                        'cpus_status': ' '.join(node[4].split('/')),
                         'memory': node[5],
                         'tmp': node[6],
                     }
