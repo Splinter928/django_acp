@@ -8,6 +8,7 @@
 
 {% block content %}
     <table class="table table-striped table-sm table-hover" style="text-align: center;">
+    {% if nodelist.count > 0 %}
         <tr>
             <th>Node</th>
             <th>Status</th>
@@ -15,6 +16,7 @@
             <th>Memory</th>
             <th>Tmp</th>
         </tr>
+    {%  endif %}
     {% for node in nodelist %}
         <tr>
            <td> {{ node.node }}</td>
@@ -22,8 +24,10 @@
                <td> <font color="#42f43e"><b>{{node.status}}</b></font></td>
             {% elif node.status == 'mixed' %}
                 <td><font color="#f1fe1b"><b>{{node.status}}</b></font></td>
-            {% else %}
+            {% elif node.status == 'allocated' %}
                 <td><font color="#f3b32b"><b>{{node.status}}</b></font></td>
+            {% else %}
+                <td><font color="red"><b>{{node.status}}</b></font></td>
             {% endif %}
             <td>
                 <font color="red">{{ node.cpus_status.split.0 }}</font>

@@ -22,6 +22,10 @@
                 <div class='rectangle' style="background: #42f43e;">
                     {{ node }}
                 </div>
+            {% elif node in partition.all_nodes_list.split and status == 'down' %}
+                <div class='rectangle' style="background: red;">
+                    {{ node }}
+                </div>
             {% endif %}
         {% endfor %}
     <br>

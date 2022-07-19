@@ -8,6 +8,7 @@ Currently {{ jobs.count }} jobs have been launched.
 
 {% block content %}
     <table class="table table-striped table-sm table-hover" style="text-align: center;">
+        {% if jobs.count > 0 %}
         <tr>
             <th>Status</th>
             <th>Calc Time</th>
@@ -19,6 +20,7 @@ Currently {{ jobs.count }} jobs have been launched.
             <th>User</th>
             <th>Project</th>
         </tr>
+        {% endif %}
         {% for job in jobs %}
             <tr>
             {% if job.job_condition == 'R' %}
