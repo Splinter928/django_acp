@@ -33,7 +33,7 @@ class Job(models.Model):
     """
 
     # Fields
-    jobid = models.CharField(max_length=20, unique=True)
+    jobid = models.CharField(max_length=20)
     partition = models.CharField(max_length=100)
     job_name = models.CharField(max_length=200)
     user = models.CharField(max_length=20)

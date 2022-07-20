@@ -3,7 +3,9 @@
 
 {% block page_header %}
 <h3>Jobs</h3>
-Currently {{ jobs.count }} jobs have been launched.
+{% if jobs.count > 0 %}
+    Currently {{ jobs.count }} jobs have been launched.
+{% endif %}
 {% endblock %}
 
 {% block content %}
